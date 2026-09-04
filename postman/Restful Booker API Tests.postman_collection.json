@@ -12,7 +12,7 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "https://restful-booker.herokuapp.com/booking"
+          "raw": "{{server_url}}/booking"
         }
       },
       "response": []

@@ -22,6 +22,5 @@ jobs:
 
       - name: Run Postman tests
         run: |
-          newman run "postman/Restful Booker API Tests.postman_collection.json"
-
-          
+          newman run postman/Restful-Booker-API.postman_collection.json \
+            -e postman/Restful-Booker-Environment.postman_environment.json

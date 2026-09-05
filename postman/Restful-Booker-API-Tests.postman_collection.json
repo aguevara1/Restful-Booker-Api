@@ -12,7 +12,13 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "{{server_url}}/booking"
+          "raw": "{{server_url}}/booking",
+          "host": [
+            "{{server_url}}"
+          ],
+          "path": [
+            "booking"
+          ]
         }
       },
       "response": []

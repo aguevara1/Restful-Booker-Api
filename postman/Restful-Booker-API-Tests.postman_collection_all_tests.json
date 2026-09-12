@@ -131,6 +131,20 @@
 
     {
       "name": "Update Booking",
+
+      "event": [
+         {
+           "listen": "test",
+           "script": {
+           "type": "text/javascript",
+           "exec": [
+             "console.log('Cookie variable:', pm.collectionVariables.get('Cookie'));",
+             "console.log('Resolved Cookie:', pm.variables.replaceIn('{{Cookie}}'));"
+            ]
+           }
+         }
+      ],
+
       "request": {
         "method": "PUT",
         "header": [

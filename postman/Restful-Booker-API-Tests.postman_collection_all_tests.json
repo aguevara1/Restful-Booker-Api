@@ -70,8 +70,8 @@
           "script": {
              "type": "text/javascript",
              "exec": [
-               "const data = pm.response.json();",
-               "pm.collectionVariables.set('Cookie', 'token='+ data.token);"
+                  "pm.collectionVariables.set('Cookie', 'token=' + pm.response.json().token);"
+
              ]
           }
         }

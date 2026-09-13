@@ -31,7 +31,6 @@
        }
      ],
 
-
       "request": {
         "method": "GET",
         "header": [],
@@ -47,8 +46,31 @@
       },
       "response": []
     },
+
     {
       "name": "GET Valid Booking id",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test(\"Status code is 200\", function () {",
+            "    pm.response.to.have.status(200);",
+            "});",
+            "",
+            "pm.test(\"Response is an object\", function () {",
+            "    pm.expect(pm.response.json()).to.be.an(\"object\");",
+            "});",
+            "",
+            "pm.test(\"Response contains bookings\", function () {",
+            "    pm.expect(pm.response.json()).to.have.property(\"firstname\");",
+            "});"
+          ]
+        }
+       }
+     ],
+
       "request": {
         "method": "GET",
         "header": [],
@@ -65,6 +87,7 @@
       },
       "response": []
     },
+
     {
       "name": "GET Invalid Booking id",
       "request": {

@@ -90,6 +90,28 @@
 
     {
       "name": "GET Invalid Booking id",
+            "event": [
+        {
+          "listen": "test",
+          "script": {
+          "type": "text/javascript",
+          "exec": [
+            "pm.test(\"Status code is 404\", function () {",
+            "    pm.response.to.have.status(404);",
+            "});",
+            "",
+            "pm.test(\"Response body does not include booking firstname\", function () {",
+            "    pm.expect(pm.response.text()).to.not.include(\"firstname\");",
+            "});",
+            "",
+            "pm.test(\"Response indicates booking was not found\", function () {",
+            "    pm.expect(pm.response.text()).to.include(\"Not Found\");",
+            "});"
+          ]
+        }
+       }
+     ],
+
       "request": {
         "method": "GET",
         "header": [],
@@ -116,6 +138,19 @@
           "script": {
              "type": "text/javascript",
              "exec": [
+              
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains token\", function () {",
+                  "    pm.expect(pm.response.json()).to.have.property(\"token\");",
+                  "});",
+                  "",
+                  "pm.test(\"Token is not empty\", function () {",
+                  "    pm.expect(pm.response.json().token).to.not.be.empty;", 
+                  "});",
+                  "",     
                   "pm.collectionVariables.set('Cookie', 'token=' + pm.response.json().token);"
 
              ]

@@ -185,6 +185,34 @@
 
     {
       "name": "Create Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+             "type": "text/javascript",
+             "exec": [
+              
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Bookingid field is returned\", function () {",
+                  "    pm.expect(pm.response.json()).to.have.property(\"bookingid\");",
+                  "});",
+                  "",
+                  "pm.test(\"Bookingid is not empty\", function () {",
+                  "    pm.expect(pm.response.json().bookingid).to.not.be.empty;", 
+                  "});",
+                  "",     
+                  "pm.test(\"Booking field is returned\", function () {",
+                  "    pm.expect(pm.response.json()).to.have.property(\"booking\");", 
+                  "});"
+
+              ]
+          }
+        }
+      ],
+
       "request": {
         "method": "POST",
         "header": [],
@@ -220,23 +248,46 @@
            "type": "text/javascript",
            "exec": [
              "console.log('Cookie variable:', pm.collectionVariables.get('Cookie'));",
-             "console.log('Resolved Cookie:', pm.variables.replaceIn('{{Cookie}}'));"
+             "console.log('Resolved Cookie:', pm.variables.replaceIn('{{Cookie}}'));",
+             "",     
+             "pm.test(\"Status code is 200\", function () {",
+             "    pm.response.to.have.status(200);",
+             "});",
+               "",     
+            "pm.test(\"firstname field has value of Jose\", function () {",
+            "    pm.expect(pm.response.json()).to.have.property(\"firstname\",\"Jose\");", 
+            "});",
+            "",     
+            "pm.test(\"lastname field has value of Brown\", function () {",
+            "    pm.expect(pm.response.json()).to.have.property(\"lastname\",\"Brown\");", 
+            "});",
+            "",     
+            "pm.test(\"Total price was updated to 111\", function () {",
+            "    pm.expect(pm.response.json()).to.have.property(\"totalprice\", 111);", 
+            "});"
+
             ]
            }
          }
       ],
 
       "request": {
+
         "method": "PUT",
         "header": [
-          {
-            "key": "Cookie",
-            "value": "{{Cookie}}"
+         {
+            "key": "Content-Type",
+            "value": "application/json"
           },
           {
             "key": "Accept",
             "value": "\"application/json\""
+          },
+          {
+            "key": "Cookie",
+            "value": "{{Cookie}}"
           }
+
         ],
         "body": {
           "mode": "raw",

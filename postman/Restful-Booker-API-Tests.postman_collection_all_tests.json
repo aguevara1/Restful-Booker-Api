@@ -7,6 +7,61 @@
   },
 
   "item": [
+
+    {
+      "name": "Create Auth Token",
+
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+             "type": "text/javascript",
+             "exec": [
+              
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Response contains token\", function () {",
+                  "    pm.expect(pm.response.json()).to.have.property(\"token\");",
+                  "});",
+                  "",
+                  "pm.test(\"Token is not empty\", function () {",
+                  "    pm.expect(pm.response.json().token).to.not.be.empty;", 
+                  "});",
+                  "",     
+                  "pm.collectionVariables.set('Cookie', 'token=' + pm.response.json().token);"
+
+             ]
+          }
+        }
+      ],
+
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"password123\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{server_url}}/auth",
+          "host": [
+            "{{server_url}}"
+          ],
+          "path": [
+            "auth"
+          ]
+        }
+      },
+      "response": []
+    },
+
     {
       "name": "getBooking",
       "event": [
@@ -195,61 +250,6 @@
       },
       "response": []
     },
-
-    {
-      "name": "Create Auth Token",
-
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-             "type": "text/javascript",
-             "exec": [
-              
-                  "pm.test(\"Status code is 200\", function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"Response contains token\", function () {",
-                  "    pm.expect(pm.response.json()).to.have.property(\"token\");",
-                  "});",
-                  "",
-                  "pm.test(\"Token is not empty\", function () {",
-                  "    pm.expect(pm.response.json().token).to.not.be.empty;", 
-                  "});",
-                  "",     
-                  "pm.collectionVariables.set('Cookie', 'token=' + pm.response.json().token);"
-
-             ]
-          }
-        }
-      ],
-
-      "request": {
-        "method": "POST",
-        "header": [],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"password123\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
-        },
-        "url": {
-          "raw": "{{server_url}}/auth",
-          "host": [
-            "{{server_url}}"
-          ],
-          "path": [
-            "auth"
-          ]
-        }
-      },
-      "response": []
-    },
-
    
     {
       "name": "Update Booking",

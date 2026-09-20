@@ -312,13 +312,13 @@
           }
         },
         "url": {
-          "raw": "{{server_url}}/booking/1",
+          "raw": "{{server_url}}/booking/{{bookingId}}",
           "host": [
             "{{server_url}}"
           ],
           "path": [
             "booking",
-            "1"
+            "{{bookingId}}"
           ]
         }
       },
@@ -353,18 +353,19 @@
           }
         },
         "url": {
-          "raw": "{{server_url}}/booking/1",
+          "raw": "{{server_url}}/booking/{{bookingId}}",
           "host": [
             "{{server_url}}"
           ],
           "path": [
             "booking",
-            "1"
+            "{{bookingId}}"
           ]
         }
       },
       "response": []
     },
+    
     {
       "name": "Delete Booking",
       "request": {

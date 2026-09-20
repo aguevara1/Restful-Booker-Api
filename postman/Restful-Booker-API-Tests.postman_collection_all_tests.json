@@ -59,6 +59,8 @@
                   "pm.environment.set(\"bookingId\", pm.response.json().bookingid);",
 
                   "console.log(\"bookingId =\", pm.environment.get(\"bookingId\"));",
+                  "",
+                  "console.log(pm.variables.replaceIn(\"{{bookingId}}\"));",
 
                   "pm.test(\"Status code is 200\", function () {",
                   "    pm.response.to.have.status(200);",

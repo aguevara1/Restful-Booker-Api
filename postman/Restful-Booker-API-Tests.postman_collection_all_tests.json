@@ -73,7 +73,12 @@
 
       "request": {
         "method": "GET",
-        "header": [],
+        "header": [
+                    {
+            "key": "Accept",
+            "value": "\"application/json\""
+          }
+        ],   
         "url": {
           "raw": "{{server_url}}/booking/1",
           "host": [
@@ -201,7 +206,8 @@
                   "});",
                   "",
                   "pm.test(\"Bookingid is not empty\", function () {",
-                  "    pm.expect(pm.response.json().bookingid).to.not.be.empty;", 
+                  "    pm.expect(pm.response.json().bookingid).to.exist;", 
+                  "    pm.expect(pm.response.json().bookingid).to.be.a(\"number\");",
                   "});",
                   "",     
                   "pm.test(\"Booking field is returned\", function () {",
@@ -291,7 +297,7 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n    \"firstname\" : \"James\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
+          "raw": "{\n    \"firstname\" : \"Jose\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}",
           "options": {
             "raw": {
               "language": "json"
@@ -311,6 +317,7 @@
       },
       "response": []
     },
+
     {
       "name": "Partial Update Booking",
       "request": {

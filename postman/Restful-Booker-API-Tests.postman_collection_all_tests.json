@@ -58,6 +58,8 @@
 
                   "pm.environment.set(\"bookingId\", pm.response.json().bookingid);",
 
+                  "console.log(\"bookingId =\", pm.environment.get(\"bookingId\"));",
+
                   "pm.test(\"Status code is 200\", function () {",
                   "    pm.response.to.have.status(200);",
                   "});",
@@ -134,7 +136,7 @@
         "header": [
                     {
             "key": "Accept",
-            "value": "\"application/json\""
+            "value": "application/json"
           }
         ],   
         "url": {

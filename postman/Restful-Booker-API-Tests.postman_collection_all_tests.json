@@ -250,7 +250,69 @@
       },
       "response": []
     },
-   
+
+ {
+      "name": "Create Booking",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+             "type": "text/javascript",
+             "exec": [
+
+                  "pm.environment.set(\"bookingId\", pm.response.json().bookingid);",
+
+                  "console.log(\"bookingId =\", pm.environment.get(\"bookingId\"));",
+                  "",
+                  "console.log(pm.variables.replaceIn(\"{{bookingId}}\"));",
+
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"Bookingid field is returned\", function () {",
+                  "    pm.expect(pm.response.json()).to.have.property(\"bookingid\");",
+                  "});",
+                  "",
+                  "pm.test(\"Bookingid is not empty\", function () {",
+                  "    pm.expect(pm.response.json().bookingid).to.exist;", 
+                  "    pm.expect(pm.response.json().bookingid).to.be.a(\"number\");",
+                  "});",
+                  "",     
+                  "pm.test(\"Booking field is returned\", function () {",
+                  "    pm.expect(pm.response.json()).to.have.property(\"booking\");", 
+                  "});"
+
+              ]
+          }
+        }
+      ],
+
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"firstname\" : \"Jose\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Lunch\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{server_url}}/booking",
+          "host": [
+            "{{server_url}}"
+          ],
+          "path": [
+            "booking"
+          ]
+        }
+      },
+      "response": []
+    },
+
     {
       "name": "Update Booking",
 

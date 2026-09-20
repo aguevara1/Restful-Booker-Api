@@ -356,7 +356,7 @@
           },
           {
             "key": "Accept",
-            "value": "\"application/json\""
+            "value": "application/json"
           },
           {
             "key": "Cookie",
